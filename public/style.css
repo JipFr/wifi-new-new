@@ -1,0 +1,143 @@
+:root {
+	--body: white;
+	--text: black;
+	--secondary: #4C4C4C;
+	--theme: #3e98ff;
+	--border: #E6E6E6;
+
+	--gap_small: 5px;
+	--gap: 10px;
+	--gap_large: 20px;
+
+}
+@media (prefers-color-scheme: dark) {
+	body {
+		--body: #191919;
+		--text: white;
+		--theme: #5855ff;
+		--border: #4C4C4C;
+	}
+}
+
+body {
+	margin: 0;
+	background: var(--body);
+	color: var(--text);
+	font-family: Arial;
+}
+
+header {
+	width: 100%;
+	height: 40px;
+	background: var(--theme);
+}
+
+.bodyWrapper {
+	width: 100%;
+	margin: var(--gap_large) 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.body {
+	width: calc(100% - 40px);
+	max-width: 1300px;
+}
+
+.mainLayout {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 250px 1fr;
+	grid-gap: var(--gap_large);
+}
+
+.asideTop input {
+	width: calc(100% - 22px);
+	padding: var(--gap);
+	border: 1px solid var(--border);
+	font-size: 1rem;
+	-webkit-appearance: none;
+	background: transparent;
+	color: var(--text);
+}
+
+.devicesDiv {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-gap: var(--gap_small);
+}
+
+.sidebarItem {
+	padding: var(--gap);
+	border-left: 3px solid var(--theme);
+	cursor: pointer;
+}
+.sidebarItem .title, .sidebarItem .subtitle {
+	margin: 0;
+}
+.sidebarItem .title {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	margin-bottom: var(--gap_small);
+}
+.sidebarItem .title:before {
+	content: "";
+	display: block;
+	width: 16px;
+	height: 16px;
+	background: gray;
+	margin-right: var(--gap);
+	border-radius: 50%;
+}
+.sidebarItem[data-active="1"] .title:before {
+	background: green;
+}
+.sidebarItem .subtitle {
+	color: var(--secondary);
+}
+
+.sidebarItem.currentFocus {
+	background: rgba(62, 152, 255, 0.11);
+}
+.noMatch {
+	display: none;
+}
+
+.deviceCore .title {
+	margin: 0;
+	padding: var(--gap);
+	border-left: 3px solid var(--theme);
+}
+
+hr {
+	border: 0;
+	width: 100%;
+	height: 1px;
+	background: var(--border);
+	margin: var(--gap) 0;
+}
+
+.coreContent {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-gap: var(--gap_small);
+}
+
+.card {
+	padding: var(--gap);
+	border-left: 3px solid var(--theme);
+}
+.card .content {
+	margin: 0;
+}
+
+.noResults {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: var(--gap_large) 0;
+}
+.noResults.hide {
+	display: none;
+}

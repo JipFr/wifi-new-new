@@ -10,6 +10,11 @@ if(!fs.existsSync("data.json")) {
 let data = require("./data.json");
 if(!data.devices) data.devices = {}
 
+const app = require("./web");
+app.listen(80, () => {
+	console.log("Web server is live");
+});
+
 const main = async () => {
 	const connected = await getConnected();
 	

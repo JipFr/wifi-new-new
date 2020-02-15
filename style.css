@@ -1,0 +1,24 @@
+:root {
+	--body: white;
+	--text: black;
+	--theme: #3e98ff;
+}
+@media (prefers-color-scheme: dark) {
+	body {
+		--body: #191919;
+		--text: white;
+		--theme: black;
+	}
+}
+
+body {
+	margin: 0;
+	background: var(--body);
+	color: var(--text);
+}
+
+header {
+	width: 100%;
+	height: 40px;
+	background: var(--theme);
+}
