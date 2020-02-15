@@ -36,10 +36,11 @@ const main = async () => {
 	}
 
 		// Logging, temporarily
+		console.log("\n".repeat(40), "—".repeat(30));
 		for(let device of Object.values(data.devices)) {
 			console.log((device.meta.HostName || device.meta.IPAddress) + ":");
 			console.log(device.sessions.map(session => {
-				return `  From: ${new Date(session.from).toLocaleTimeString()}    To: ${new Date(session.to).toLocaleTimeString()}`;
+				return `From: ${new Date(session.from).toLocaleString("it-IT")}    To: ${new Date(session.to).toLocaleTimeString("it-IT")} (${new Date(session.to).toLocaleDateString("it-IT")})`;
 			}).join("\n") + "\n")
 		}
 	
