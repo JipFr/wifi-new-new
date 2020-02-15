@@ -8,6 +8,7 @@ if(!fs.existsSync("data.json")) {
 	}));
 }
 let data = require("./data.json");
+if(!data.devices) data.devices = {}
 
 const main = async () => {
 	const connected = await getConnected();
@@ -34,10 +35,10 @@ const main = async () => {
 
 	}
 
-		// let jip = Object.values(data.devices).find(d => d.device.HostName === "Jips-iPhone");
-		for(let jip of Object.values(data.devices)) {
-			console.log((jip.device.HostName || jip.device.IPAddress) + ":");
-			console.log(jip.sessions.map(session => {
+		// Logging, temporarily
+		for(let device of Object.values(data.devices)) {
+			console.log((device.meta.HostName || device.meta.IPAddress) + ":");
+			console.log(device.sessions.map(session => {
 				return `  From: ${new Date(session.from).toLocaleTimeString()}    To: ${new Date(session.to).toLocaleTimeString()}`;
 			}).join("\n") + "\n")
 		}
@@ -51,7 +52,7 @@ setInterval(main, interval);
 function validateEntry(mac, device) {
 	if(!data.devices[mac]) {
 		data.devices[mac] = {
-			device,
+			meta: device,
 			sessions: [
 				{
 					from: Date.now(),
