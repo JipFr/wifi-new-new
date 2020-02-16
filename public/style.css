@@ -79,7 +79,6 @@ header {
 	display: flex;
 	flex-wrap: nowrap;
 	align-items: center;
-	margin-bottom: var(--gap_small);
 }
 .sidebarItem .title:before {
 	content: "";
@@ -95,6 +94,7 @@ header {
 }
 .sidebarItem .subtitle {
 	color: var(--secondary);
+	margin-top: var(--gap_small);
 }
 
 .sidebarItem.currentFocus {
@@ -140,4 +140,32 @@ hr {
 }
 .noResults.hide {
 	display: none;
+}
+
+@media screen and (max-width: 700px) {
+	.mainLayout {
+		grid-template-columns: 100%;
+	}
+	.devicesDiv {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-items: center;
+		overflow-x: auto;
+		width: calc(100% + 40px);
+		margin-left: -20px;
+	}
+	.devicesDiv .sidebarItem:first-child {
+		margin-left: 20px;
+	}
+	.sidebarItem {
+		border-left: 0;
+		border-radius: 6px;
+	}
+	.sidebarItem .subtitle {
+		display: none;
+	}
+	.devicesDiv .title {
+		white-space: nowrap;
+	}
 }

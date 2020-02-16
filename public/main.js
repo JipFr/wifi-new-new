@@ -22,10 +22,11 @@ async function main() {
 	
 	if(typeof currentFocus === "undefined") currentFocus = devices[Math.floor(Math.random() * devices.length)].meta.MACAddress; 
 	render(devices);
+	return 1;
 }
 
-function init() {
-	main();
+async function init() {
+	await main();
 	setInterval(main, 20e3);
 	document.querySelector(".searchInput").addEventListener("input", search);
 	search(document.querySelector(".searchInput"));
@@ -33,11 +34,11 @@ function init() {
 
 function render(renderDevices = devices) {
 	toRender = renderDevices;
-	renderSidebar();
+	renderSidebar(true);
 	renderCore();
 }
 
-function renderSidebar() {
+function renderSidebar(shouldSearch = false) {
 	let sidebar = document.querySelector("aside.allViews");
 	let devicesDiv = sidebar.querySelector(".devicesDiv");
 
@@ -66,7 +67,7 @@ function renderSidebar() {
 		devicesDiv.appendChild(node);
 	}
 
-	search(document.querySelector(".searchInput"));
+	if(shouldSearch) search(document.querySelector(".searchInput"));
 
 }
 
@@ -109,15 +110,22 @@ function getTime(num) {
 }
 
 function search(evt) {
+
+	renderSidebar();
+
 	let el = evt.currentTarget || evt;
 	let v = el.value.split(", ").filter(i => i).map(q => q.toLowerCase().trim());
 	
 	document.querySelectorAll(".allViews .deviceName").forEach(el => {
 		let sidebarItem = el.closest(".sidebarItem")
 		if(v.length > 0 && !v.find(q => el.innerText.toLowerCase().includes(q) )) {
-			sidebarItem.classList.add("noMatch");
-		} else {
-			sidebarItem.classList.remove("noMatch");
+		// 	sidebarItem.classList.add("noMatch");
+		// 	sidebarItem.classList.remove("match");
+		// } else {
+		// 	sidebarItem.classList.remove("noMatch");
+		// 	sidebarItem.classList.add("match");
+		// }
+			sidebarItem.remove();
 		}
 	});
 

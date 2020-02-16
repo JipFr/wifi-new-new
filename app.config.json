@@ -1,0 +1,10 @@
+{
+	"apps": [
+		{
+			"name": "Wifi2",
+			"script": "index.js",
+			"watch": false,
+			"ignore_watch": []
+		}
+	]
+}
